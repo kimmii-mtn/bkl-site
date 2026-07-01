@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>법무법인(유한) 태평양 | BAE, KIM & LEE LLC</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root{
+    --navy:#0a1a3c;
+    --navy-2:#132a54;
+    --ink:#1b2333;
+    --gray:#5b6472;
+    --line:#e4e7ec;
+    --bg-soft:#f5f6f8;
+    --accent:#9a7b4f; /* muted gold */
+    --white:#ffffff;
+    --maxw:1280px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Pretendard','Pretendard Variable',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-size:12px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+  }
+
+  /* ---------- Top utility bar ---------- */
+  .utility{
+    background:var(--navy);color:#c9d2e3;font-size:12.5px;
+  }
+  .utility .wrap{display:flex;justify-content:flex-end;align-items:center;gap:22px;height:40px;}
+  .utility a{color:#c9d2e3;letter-spacing:.02em;}
+  .utility a:hover{color:#fff;}
+  .utility .lang{display:flex;gap:12px;}
+  .utility .divider{width:1px;height:12px;background:#33436b;}
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
+  .brand{display:flex;flex-direction:column;line-height:1.15;}
+  .brand .kr{font-size:20px;font-weight:800;letter-spacing:-.01em;color:var(--navy);}
+  .brand .en{font-size:10.5px;letter-spacing:.22em;color:var(--gray);text-transform:uppercase;margin-top:2px;}
+  nav.main ul{display:flex;gap:38px;list-style:none;align-items:center;}
+  nav.main a{
+    font-size:15.5px;font-weight:600;color:var(--ink);position:relative;padding:6px 0;
+  }
+  nav.main a::after{
+    content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--accent);
+    transition:width .25s ease;
+  }
+  nav.main a:hover::after{width:100%;}
+  .nav-tools{display:flex;align-items:center;gap:20px;}
+  .icon-btn{background:none;border:none;cursor:pointer;color:var(--ink);display:flex;}
+  .icon-btn svg{width:20px;height:20px;}
+
+  /* ---------- Hero carousel ---------- */
+  .hero{position:relative;height:min(78vh,720px);overflow:hidden;background:var(--navy);}
+  .slides{height:100%;}
+  .slide{
+    position:absolute;inset:0;opacity:0;transition:opacity 1s ease;
+    background-size:cover;background-position:center;
+    display:flex;align-items:flex-end;
+  }
+  .slide.active{opacity:1;}
+  .slide::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(6,15,38,.82) 0%,rgba(6,15,38,.45) 45%,rgba(6,15,38,.15) 100%);
+  }
+  .slide .wrap{position:relative;z-index:2;width:100%;padding-bottom:96px;}
+  .slide-inner{color:#fff;max-width:640px;}
+  .slide .eyebrow{color:#d9c6a4;}
+  .slide h2{
+    font-size:44px;line-height:1.18;font-weight:800;margin:16px 0 22px;letter-spacing:-.02em;
+    text-shadow:0 2px 24px rgba(0,0,0,.25);
+  }
+  .readmore{
+    display:inline-flex;align-items:center;gap:9px;color:#fff;font-weight:600;font-size:15px;
+    border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px;
+  }
+  .readmore svg{width:16px;height:16px;transition:transform .25s ease;}
+  .readmore:hover svg{transform:translateX(4px);}
+  .hero-dots{position:absolute;bottom:40px;left:0;right:0;z-index:3;}
+  .hero-dots .wrap{display:flex;gap:12px;align-items:center;}
+  .dot{width:38px;height:3px;background:rgba(255,255,255,.35);border:none;cursor:pointer;padding:0;}
+  .dot.active{background:#fff;}
+
+  /* ---------- Featured resources cards ---------- */
+  .section{padding:96px 0;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;}
+  .section-head h3{font-size:28px;font-weight:800;color:var(--navy);letter-spacing:-.02em;margin-top:8px;}
+  .link-more{font-size:14px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:6px;}
+  .cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .card{border:1px solid var(--line);background:#fff;transition:transform .25s ease,box-shadow .25s ease;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,26,60,.10);}
+  .card .thumb{aspect-ratio:2/1;background-size:cover;background-position:center;background-color:var(--bg-soft);}
+  .card .body{padding:22px 22px 26px;}
+  .card .tag{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;}
+  .card h4{font-size:17px;font-weight:700;margin:10px 0 0;line-height:1.4;color:var(--ink);}
+
+  /* ---------- Practices grid ---------- */
+  .practices{background:var(--bg-soft);}
+  .prac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .prac{
+    background:#fff;padding:34px 28px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;
+    transition:background .25s ease,color .25s ease;position:relative;
+  }
+  .prac .num{font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.1em;}
+  .prac h4{font-size:18px;font-weight:700;line-height:1.35;color:var(--ink);transition:color .25s;}
+  .prac .arrow{opacity:0;transform:translateX(-6px);transition:all .25s;color:#fff;}
+  .prac:hover{background:var(--navy);}
+  .prac:hover h4,.prac:hover .num{color:#fff;}
+  .prac:hover .arrow{opacity:1;transform:translateX(0);}
+
+  /* ---------- Recognition quote band ---------- */
+  .quote-band{background:var(--navy);color:#fff;padding:110px 0;}
+  .quote-band .eyebrow{color:#d9c6a4;}
+  .quote-band blockquote{
+    font-size:34px;line-height:1.4;font-weight:300;letter-spacing:-.01em;max-width:960px;margin:26px 0 30px;
+  }
+  .quote-band blockquote b{font-weight:700;}
+  .quote-band cite{font-style:normal;font-size:15px;color:#9fb0d0;letter-spacing:.02em;}
+
+  /* ---------- News + Insights split ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:72px;}
+  .news-list{list-style:none;}
+  .news-item{display:flex;gap:24px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+  .news-item:first-child{border-top:1px solid var(--line);}
+  .news-item .date{font-size:13px;color:var(--gray);min-width:96px;font-variant-numeric:tabular-nums;}
+  .news-item h4{font-size:17px;font-weight:600;line-height:1.5;color:var(--ink);transition:color .2s;}
+  .news-item:hover h4{color:var(--accent);}
+
+  /* ---------- Insights cards (3) ---------- */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+  .ins-card .thumb{aspect-ratio:16/10;background-size:cover;background-position:center;background-color:var(--bg-soft);}
+  .ins-card .meta{font-size:12.5px;color:var(--gray);margin:18px 0 8px;letter-spacing:.02em;}
+  .ins-card h4{font-size:19px;font-weight:700;line-height:1.4;color:var(--ink);transition:color .2s;}
+  .ins-card:hover h4{color:var(--accent);}
+
+  /* ---------- Global offices strip ---------- */
+  .offices{background:var(--bg-soft);}
+  .offices .row{display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:26px;}
+  .offices .row span{font-size:16px;font-weight:600;color:var(--navy);}
+  .offices .row span small{color:var(--gray);font-weight:400;margin-left:6px;}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:linear-gradient(120deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;text-align:center;padding:100px 0;
+  }
+  .cta h3{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px;}
+  .cta p{color:#b9c4dc;font-size:17px;margin-bottom:34px;}
+  .btn{
+    display:inline-block;background:#fff;color:var(--navy);font-weight:700;font-size:15px;
+    padding:16px 40px;border-radius:2px;transition:transform .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:#060f26;color:#8fa0bf;padding:64px 0 40px;font-size:13.5px;}
+  .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid #1a2748;}
+  .foot-brand .kr{font-size:19px;font-weight:800;color:#fff;}
+  .foot-brand .en{font-size:10px;letter-spacing:.2em;color:#6d7ea3;margin-top:4px;text-transform:uppercase;}
+  .foot-brand p{margin-top:18px;line-height:1.7;max-width:340px;}
+  footer h5{color:#fff;font-size:13px;letter-spacing:.06em;margin-bottom:16px;}
+  footer ul{list-style:none;}
+  footer ul li{margin-bottom:10px;}
+  footer ul a:hover{color:#fff;}
+  .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;color:#5f7099;font-size:12.5px;}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:1024px){
+    .cards4{grid-template-columns:repeat(2,1fr);}
+    .prac-grid{grid-template-columns:repeat(2,1fr);}
+    .cards3{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;gap:48px;}
+    .foot-top{grid-template-columns:1fr 1fr;}
+    nav.main{display:none;}
+  }
+  @media(max-width:640px){
+    .wrap{padding:0 22px;}
+    .cards4{grid-template-columns:1fr;}
+    .prac-grid{grid-template-columns:1fr;}
+    .slide h2{font-size:30px;}
+    .quote-band blockquote{font-size:24px;}
+    .section{padding:64px 0;}
+    .foot-top{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Utility bar -->
+<div class="utility">
+  <div class="wrap">
+    <a href="#">구성원 검색</a>
+    <div class="divider"></div>
+    <div class="lang">
+      <a href="#" style="color:#fff;font-weight:600;">KOR</a>
+      <a href="#">ENG</a>
+      <a href="#">中文</a>
+      <a href="#">日本語</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site">
+  <div class="wrap nav">
+    <a href="#" class="brand">
+      <span class="kr">법무법인(유한) 태평양</span>
+      <span class="en">BAE, KIM &amp; LEE LLC</span>
+    </a>
+    <nav class="main">
+      <ul>
+        <li><a href="#">법인소개</a></li>
+        <li><a href="#practices">업무분야</a></li>
+        <li><a href="#">구성원</a></li>
+        <li><a href="#news">소식자료</a></li>
+        <li><a href="#">사회공헌</a></li>
+        <li><a href="#">인재채용</a></li>
+      </ul>
+    </nav>
+    <div class="nav-tools">
+      <button class="icon-btn" aria-label="검색">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="메뉴">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero carousel -->
+<section class="hero">
+  <div class="slides">
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1920&q=80')">
+      <div class="wrap">
+        <div class="slide-inner">
+          <span class="eyebrow">Antitrust &amp; Competition</span>
+          <h2>변화하는 규제 환경,<br/>가장 앞선 통찰로 대응합니다</h2>
+          <a href="#" class="readmore">자세히 보기
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1920&q=80')">
+      <div class="wrap">
+        <div class="slide-inner">
+          <span class="eyebrow">Artificial Intelligence</span>
+          <h2>AI 시대의 법률,<br/>새로운 기준을 만듭니다</h2>
+          <a href="#" class="readmore">자세히 보기
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80')">
+      <div class="wrap">
+        <div class="slide-inner">
+          <span class="eyebrow">Global Network</span>
+          <h2>서울에서 세계로,<br/>국경을 넘는 법률 자문</h2>
+          <a href="#" class="readmore">자세히 보기
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="wrap">
+      <button class="dot active" data-idx="0" aria-label="슬라이드 1"></button>
+      <button class="dot" data-idx="1" aria-label="슬라이드 2"></button>
+      <button class="dot" data-idx="2" aria-label="슬라이드 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- Featured resources -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Featured</span>
+        <h3>주요 자료</h3>
+      </div>
+      <a href="#" class="link-more">전체보기 →</a>
+    </div>
+    <div class="cards4">
+      <a href="#" class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="body"><span class="tag">Webcast</span><h4>2026 공정거래 이슈 전망 웨비나</h4></div>
+      </a>
+      <a href="#" class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="body"><span class="tag">Guide</span><h4>국내 IPO 실무 가이드북</h4></div>
+      </a>
+      <a href="#" class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="body"><span class="tag">Pro Bono</span><h4>사회공헌 활동 연간 리포트</h4></div>
+      </a>
+      <a href="#" class="card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80')"></div>
+        <div class="body"><span class="tag">Report</span><h4>데이터센터·디지털 인프라 백서</h4></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Practices -->
+<section class="section practices" id="practices">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Capabilities</span>
+        <h3>업무분야</h3>
+      </div>
+      <a href="#" class="link-more">전체 업무분야 →</a>
+    </div>
+    <div class="prac-grid">
+      <a href="#" class="prac"><span class="num">01</span><h4>공정거래</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">02</span><h4>인공지능 · AI</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">03</span><h4>M&amp;A · 기업소송</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">04</span><h4>제재 · 수출통제</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">05</span><h4>기업지배구조</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">06</span><h4>규제 · 컴플라이언스</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">07</span><h4>디지털 금융</h4><span class="arrow">↗</span></a>
+      <a href="#" class="prac"><span class="num">08</span><h4>조세 · 국제투자</h4><span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Recognition quote -->
+<section class="quote-band">
+  <div class="wrap">
+    <span class="eyebrow">Recognition</span>
+    <blockquote>“복잡한 규제와 국경을 넘는 분쟁에서 <b>가장 신뢰할 수 있는 자문사</b>. 3년 연속 국내 최상위 로펌으로 평가받았습니다.”</blockquote>
+    <cite>— Chambers Asia-Pacific, The Legal 500, IFLR1000</cite>
+  </div>
+</section>
+
+<!-- News + Insights split -->
+<section class="section" id="news">
+  <div class="wrap split">
+    <div>
+      <div class="section-head" style="margin-bottom:8px;">
+        <div><span class="eyebrow">News</span><h3>새소식</h3></div>
+      </div>
+      <ul class="news-list">
+        <li class="news-item"><span class="date">2026.07.01</span><h4>리걸 AI 플랫폼 ‘Harvey’ 도입으로 자문 역량 강화</h4></li>
+        <li class="news-item"><span class="date">2026.06.18</span><h4>3년 연속 국내 최상위 로펌(Top-tier) 선정</h4></li>
+        <li class="news-item"><span class="date">2026.05.30</span><h4>국제조세·투자센터(ITIC) 신설 및 개소</h4></li>
+        <li class="news-item"><span class="date">2026.05.12</span><h4>싱가포르 오피스, 동남아 M&amp;A 자문 확대</h4></li>
+      </ul>
+    </div>
+    <div>
+      <div class="section-head" style="margin-bottom:8px;">
+        <div><span class="eyebrow">Insights</span><h3>인사이트</h3></div>
+      </div>
+      <ul class="news-list">
+        <li class="news-item"><span class="date">Newsletter</span><h4>개정 공정거래법 시행령, 실무상 유의점</h4></li>
+        <li class="news-item"><span class="date">Legal Update</span><h4>생성형 AI와 저작권 — 최신 판례 동향</h4></li>
+        <li class="news-item"><span class="date">Client Alert</span><h4>미국 수출통제(EAR) 강화 조치 분석</h4></li>
+        <li class="news-item"><span class="date">Newsletter</span><h4>가상자산 이용자 보호법 대응 가이드</h4></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Featured insights (3 cards) -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Latest</span><h3>주요 인사이트</h3></div>
+      <a href="#" class="link-more">전체보기 →</a>
+    </div>
+    <div class="cards3">
+      <a href="#" class="ins-card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="meta">2026.06.25 · Corporate</div>
+        <h4>2026년 상법 개정과 이사회 운영 실무</h4>
+      </a>
+      <a href="#" class="ins-card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="meta">2026.06.10 · Technology</div>
+        <h4>AI 규제법 시행 대비 기업 체크리스트</h4>
+      </a>
+      <a href="#" class="ins-card">
+        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80')"></div>
+        <div class="meta">2026.05.28 · Disputes</div>
+        <h4>국제중재 절차의 최근 변화와 전략</h4>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Global offices -->
+<section class="section offices">
+  <div class="wrap">
+    <span class="eyebrow">Global Network</span>
+    <h3 style="font-size:28px;font-weight:800;color:var(--navy);margin-top:8px;">글로벌 오피스</h3>
+    <div class="row">
+      <span>서울 <small>Seoul</small></span>
+      <span>싱가포르 <small>Singapore</small></span>
+      <span>베이징 <small>Beijing</small></span>
+      <span>홍콩 <small>Hong Kong</small></span>
+      <span>호치민 <small>Ho Chi Minh</small></span>
+      <span>하노이 <small>Hanoi</small></span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h3>함께 성장할 최고의 인재를 찾습니다</h3>
+    <p>태평양은 도전하는 법률 전문가와 함께 미래를 만들어 갑니다.</p>
+    <a href="#" class="btn">인재채용 바로가기</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="kr">법무법인(유한) 태평양</div>
+        <div class="en">BAE, KIM &amp; LEE LLC</div>
+        <p>서울특별시 강남구 테헤란로 137 (역삼동) · 대표전화 02-3404-0000</p>
+      </div>
+      <div>
+        <h5>법인소개</h5>
+        <ul>
+          <li><a href="#">인사말</a></li>
+          <li><a href="#">연혁</a></li>
+          <li><a href="#">글로벌 네트워크</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>서비스</h5>
+        <ul>
+          <li><a href="#">업무분야</a></li>
+          <li><a href="#">구성원</a></li>
+          <li><a href="#">소식자료</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>바로가기</h5>
+        <ul>
+          <li><a href="#">인재채용</a></li>
+          <li><a href="#">사회공헌</a></li>
+          <li><a href="#">오시는 길</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 BAE, KIM &amp; LEE LLC. All rights reserved.</span>
+      <span>개인정보처리방침 · 이메일무단수집거부</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hero carousel
+  (function(){
+    var slides = document.querySelectorAll('.slide');
+    var dots = document.querySelectorAll('.dot');
+    var i = 0, timer;
+    function go(n){
+      slides[i].classList.remove('active');
+      dots[i].classList.remove('active');
+      i = (n+slides.length)%slides.length;
+      slides[i].classList.add('active');
+      dots[i].classList.add('active');
+    }
+    function next(){ go(i+1); }
+    function start(){ timer = setInterval(next, 6000); }
+    dots.forEach(function(d){
+      d.addEventListener('click', function(){
+        clearInterval(timer); go(parseInt(this.dataset.idx,10)); start();
+      });
+    });
+    start();
+  })();
+</script>
+</body>
+</html>
