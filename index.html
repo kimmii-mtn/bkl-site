@@ -39,11 +39,18 @@
   .utility{
     background:var(--navy);color:#c9d2e3;font-size:12.5px;
   }
-  .utility .wrap{display:flex;justify-content:flex-end;align-items:center;gap:22px;height:40px;}
+  .utility .wrap{display:flex;justify-content:space-between;align-items:center;gap:22px;height:40px;}
   .utility a{color:#c9d2e3;letter-spacing:.02em;}
   .utility a:hover{color:#fff;}
   .utility .lang{display:flex;gap:12px;}
   .utility .divider{width:1px;height:12px;background:#33436b;}
+  .firm-toggle{display:flex;background:rgba(255,255,255,.08);border-radius:999px;padding:3px;}
+  .ft-btn{
+    background:none;border:none;color:#9fb0d0;font-size:12.5px;font-weight:600;
+    padding:5px 16px;border-radius:999px;cursor:pointer;font-family:inherit;
+    letter-spacing:.02em;transition:background .2s,color .2s;
+  }
+  .ft-btn.active{background:#fff;color:var(--navy);}
 
   /* ---------- Header ---------- */
   header.site{
@@ -74,19 +81,23 @@
   .slide{
     position:absolute;inset:0;opacity:0;transition:opacity 1s ease;
     background-size:cover;background-position:center;
-    display:flex;align-items:flex-end;
+    display:flex;align-items:center;
   }
   .slide.active{opacity:1;}
   .slide::before{
     content:"";position:absolute;inset:0;
     background:linear-gradient(90deg,rgba(6,15,38,.82) 0%,rgba(6,15,38,.45) 45%,rgba(6,15,38,.15) 100%);
   }
-  .slide .wrap{position:relative;z-index:2;width:100%;padding-bottom:96px;}
-  .slide-inner{color:#fff;max-width:640px;}
+  .slide .wrap{position:relative;z-index:2;width:100%;}
+  .slide-inner{color:#fff;max-width:620px;}
   .slide .eyebrow{color:#d9c6a4;}
   .slide h2{
-    font-size:44px;line-height:1.18;font-weight:800;margin:16px 0 22px;letter-spacing:-.02em;
-    text-shadow:0 2px 24px rgba(0,0,0,.25);
+    font-size:53px;line-height:1.22;font-weight:300;margin:18px 0 20px;letter-spacing:-.01em;
+    text-shadow:0 2px 24px rgba(0,0,0,.3);
+  }
+  .slide-sub{
+    font-size:17px;line-height:1.75;font-weight:400;color:rgba(255,255,255,.9);
+    max-width:500px;margin:0 0 28px;text-shadow:0 2px 16px rgba(0,0,0,.4);
   }
   .readmore{
     display:inline-flex;align-items:center;gap:9px;color:#fff;font-weight:600;font-size:15px;
@@ -98,6 +109,32 @@
   .hero-dots .wrap{display:flex;gap:12px;align-items:center;}
   .dot{width:38px;height:3px;background:rgba(255,255,255,.35);border:none;cursor:pointer;padding:0;}
   .dot.active{background:#fff;}
+
+  /* ---------- Hero floating seminar banner (wolverine Annual Report style) ---------- */
+  .hero-float{position:absolute;left:0;right:0;bottom:48px;z-index:5;pointer-events:none;}
+  .hero-float .wrap{display:flex;justify-content:flex-end;}
+  .seminar-card{
+    pointer-events:auto;width:220px;padding:10px 10px 14px;
+    border-radius:13px;color:#fff;display:block;
+    background:rgba(8,13,24,.32);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.10);
+  }
+  .sc-media{display:block;border-radius:7px;overflow:hidden;aspect-ratio:16/10;}
+  .sc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+  .seminar-card:hover .sc-media img{transform:scale(1.05);}
+  .sc-eyebrow{
+    display:block;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+    margin:11px 3px 0;color:rgba(255,255,255,.85);
+  }
+  .sc-headline{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:8px 3px 0;
+  }
+  .sc-headline .t{font-size:14px;line-height:1.25;font-weight:700;letter-spacing:-.01em;}
+  .sc-ext{flex-shrink:0;margin-bottom:2px;transition:transform .25s ease;}
+  .seminar-card:hover .sc-ext{transform:translate(2px,-2px);}
+  .sc-ext svg{width:14px;height:14px;}
 
   /* ---------- Featured resources cards ---------- */
   .section{padding:96px 0;}
@@ -111,6 +148,63 @@
   .card .body{padding:22px 22px 26px;}
   .card .tag{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;}
   .card h4{font-size:17px;font-weight:700;margin:10px 0 0;line-height:1.4;color:var(--ink);}
+
+  /* ---------- Representative matters (wolverine news-list style) ---------- */
+  .m-list{border-top:1px solid var(--line);}
+  .m-item{
+    display:flex;align-items:center;justify-content:space-between;gap:40px;
+    padding:32px 4px;border-bottom:1px solid var(--line);
+  }
+  .m-main{flex:1;min-width:0;}
+  .m-date{
+    display:block;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gray);
+  }
+  .m-title{
+    display:block;margin-top:12px;font-size:23px;font-weight:700;line-height:1.42;
+    letter-spacing:-.01em;color:var(--ink);transition:color .25s ease;
+  }
+  .m-item:hover .m-title{color:var(--navy);}
+  .m-arrow{flex-shrink:0;color:var(--accent);opacity:0;transform:translateX(-10px);transition:opacity .3s ease,transform .3s ease;}
+  .m-item:hover .m-arrow{opacity:1;transform:translateX(0);}
+  .m-arrow svg{width:26px;height:26px;}
+  .m-pager{display:flex;gap:10px;margin-top:40px;}
+  .m-pager button{
+    width:46px;height:46px;border:1px solid var(--line);background:#fff;border-radius:7px;
+    font-family:inherit;font-size:14px;font-weight:600;color:var(--ink);cursor:pointer;transition:all .2s ease;
+  }
+  .m-pager button.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .m-pager button:hover:not(.active){border-color:var(--navy);color:var(--navy);}
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+  .reveal.in{opacity:1;transform:none;}
+  .m-item{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);}
+  .m-list.in .m-item{opacity:1;transform:none;}
+  .m-list.in .m-item:nth-child(1){transition-delay:.06s;}
+  .m-list.in .m-item:nth-child(2){transition-delay:.14s;}
+  .m-list.in .m-item:nth-child(3){transition-delay:.22s;}
+  .m-list.in .m-item:nth-child(4){transition-delay:.30s;}
+  .m-list.in .m-item:nth-child(5){transition-delay:.38s;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal,.m-item{opacity:1 !important;transform:none !important;transition:none !important;}
+  }
+
+  /* ---------- Recognition (large rounded card + quote carousel) ---------- */
+  .recog-card{
+    background:#0a1224;color:#fff;border-radius:26px;
+    padding:86px 64px 66px;text-align:center;position:relative;overflow:hidden;
+    box-shadow:0 30px 70px rgba(10,18,36,.18);
+  }
+  .recog-eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .recog-track{position:relative;max-width:900px;margin:30px auto 0;min-height:180px;}
+  .recog-slide{position:absolute;left:0;right:0;top:0;opacity:0;transition:opacity .7s ease;pointer-events:none;}
+  .recog-slide.active{opacity:1;pointer-events:auto;}
+  .recog-slide p{font-size:30px;line-height:1.5;font-weight:300;font-style:italic;letter-spacing:-.01em;margin:0;}
+  .recog-slide cite{display:block;margin-top:26px;font-style:normal;font-size:14px;letter-spacing:.08em;color:#9fb0d0;}
+  .recog-dots{display:flex;justify-content:center;gap:10px;margin-top:36px;position:relative;}
+  .rdot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.28);border:none;cursor:pointer;padding:0;transition:background .2s ease,transform .2s ease;}
+  .rdot.active{background:#fff;transform:scale(1.2);}
 
   /* ---------- Practices grid ---------- */
   .practices{background:var(--bg-soft);}
@@ -189,15 +283,32 @@
     .split{grid-template-columns:1fr;gap:48px;}
     .foot-top{grid-template-columns:1fr 1fr;}
     nav.main{display:none;}
+    .hero-float{top:28px;bottom:auto;}
+    .hero-float .wrap{justify-content:flex-end;}
+    .seminar-card{width:210px;max-width:100%;}
+    .recog-card{padding:64px 40px 56px;}
+    .recog-slide p{font-size:26px;}
   }
   @media(max-width:640px){
     .wrap{padding:0 22px;}
     .cards4{grid-template-columns:1fr;}
     .prac-grid{grid-template-columns:1fr;}
-    .slide h2{font-size:30px;}
+    .slide h2{font-size:36px;}
+    .slide-sub{font-size:15px;}
+    .m-item{gap:20px;padding:24px 2px;}
+    .m-title{font-size:18px;line-height:1.5;}
+    .m-arrow{display:none;}
+    .m-pager button{width:42px;height:42px;}
+    .recog-card{padding:52px 24px 44px;border-radius:18px;}
+    .recog-slide p{font-size:20px;line-height:1.55;}
+    .recog-track{min-height:230px;}
     .quote-band blockquote{font-size:24px;}
     .section{padding:64px 0;}
     .foot-top{grid-template-columns:1fr;}
+    .hero-float{top:24px;bottom:auto;}
+    .hero-float .wrap{justify-content:center;}
+    .seminar-card{width:100%;max-width:260px;}
+    .sc-media{aspect-ratio:16/9;}
   }
 </style>
 </head>
@@ -206,8 +317,10 @@
 <!-- Utility bar -->
 <div class="utility">
   <div class="wrap">
-    <a href="#">구성원 검색</a>
-    <div class="divider"></div>
+    <div class="firm-toggle">
+      <button class="ft-btn active" data-firm="law">법무법인</button>
+      <button class="ft-btn" data-firm="patent">특허법인</button>
+    </div>
     <div class="lang">
       <a href="#" style="color:#fff;font-weight:600;">KOR</a>
       <a href="#">ENG</a>
@@ -248,11 +361,12 @@
 <!-- Hero carousel -->
 <section class="hero">
   <div class="slides">
-    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1554469384-e58fac16e23a?auto=format&fit=crop&w=1920&q=80')">
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1496588152823-86ff7695e68f?auto=format&fit=crop&w=1920&q=80')">
       <div class="wrap">
         <div class="slide-inner">
           <span class="eyebrow">Antitrust &amp; Competition</span>
           <h2>변화하는 규제 환경,<br/>가장 앞선 통찰로 대응합니다</h2>
+          <p class="slide-sub">공정거래·경쟁법 분야에서 축적된 전문성으로 기업이 직면한 규제 리스크를 선제적으로 진단하고 관리합니다.</p>
           <a href="#" class="readmore">자세히 보기
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -264,6 +378,7 @@
         <div class="slide-inner">
           <span class="eyebrow">Artificial Intelligence</span>
           <h2>AI 시대의 법률,<br/>새로운 기준을 만듭니다</h2>
+          <p class="slide-sub">생성형 AI와 데이터 규제의 최전선에서, 기술과 법률을 아우르는 통합 자문으로 새로운 기준을 제시합니다.</p>
           <a href="#" class="readmore">자세히 보기
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -275,6 +390,7 @@
         <div class="slide-inner">
           <span class="eyebrow">Global Network</span>
           <h2>서울에서 세계로,<br/>국경을 넘는 법률 자문</h2>
+          <p class="slide-sub">싱가포르·베이징·홍콩 등 글로벌 오피스 네트워크를 통해 국경을 넘는 자문을 원스톱으로 제공합니다.</p>
           <a href="#" class="readmore">자세히 보기
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -289,35 +405,112 @@
       <button class="dot" data-idx="2" aria-label="슬라이드 3"></button>
     </div>
   </div>
+  <div class="hero-float">
+    <div class="wrap">
+      <a href="#" class="seminar-card">
+        <span class="sc-media"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&q=80" alt="세미나" /></span>
+        <span class="sc-eyebrow">Seminar — 2026. 08. 21</span>
+        <span class="sc-headline">
+          <span class="t">2026 공정거래<br/>정기 세미나</span>
+          <span class="sc-ext">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
 </section>
 
-<!-- Featured resources -->
-<section class="section">
+<!-- Representative matters -->
+<section class="section matters">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
-        <span class="eyebrow">Featured</span>
-        <h3>주요 자료</h3>
+        <span class="eyebrow">Representative Matters</span>
+        <h3>대표 업무사례</h3>
       </div>
       <a href="#" class="link-more">전체보기 →</a>
     </div>
-    <div class="cards4">
-      <a href="#" class="card">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80')"></div>
-        <div class="body"><span class="tag">Webcast</span><h4>2026 공정거래 이슈 전망 웨비나</h4></div>
+    <div class="m-list">
+      <a href="#" class="m-item">
+        <span class="m-main">
+          <span class="m-date">2026. 06. 30</span>
+          <span class="m-title">국내 대기업의 20억 달러 규모 크로스보더 M&amp;A에서 인수금융 및 각국 규제 승인 전 과정을 대리했습니다.</span>
+        </span>
+        <span class="m-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="#" class="card">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80')"></div>
-        <div class="body"><span class="tag">Guide</span><h4>국내 IPO 실무 가이드북</h4></div>
+      <a href="#" class="m-item">
+        <span class="m-main">
+          <span class="m-date">2026. 05. 28</span>
+          <span class="m-title">대형 온라인 플랫폼 기업의 공정거래위원회 시장지배적지위 남용 사건을 성공적으로 방어했습니다.</span>
+        </span>
+        <span class="m-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="#" class="card">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80')"></div>
-        <div class="body"><span class="tag">Pro Bono</span><h4>사회공헌 활동 연간 리포트</h4></div>
+      <a href="#" class="m-item">
+        <span class="m-main">
+          <span class="m-date">2026. 05. 14</span>
+          <span class="m-title">글로벌 사모펀드(PEF)의 국내 제조기업 경영권 인수(바이아웃) 거래를 자문하여 성공적으로 완결했습니다.</span>
+        </span>
+        <span class="m-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
-      <a href="#" class="card">
-        <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80')"></div>
-        <div class="body"><span class="tag">Report</span><h4>데이터센터·디지털 인프라 백서</h4></div>
+      <a href="#" class="m-item">
+        <span class="m-main">
+          <span class="m-date">2026. 05. 06</span>
+          <span class="m-title">가상자산 거래소의 이용자 보호법 대응 및 금융당국 상장 심사 전반에 관한 자문을 제공했습니다.</span>
+        </span>
+        <span class="m-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
       </a>
+      <a href="#" class="m-item">
+        <span class="m-main">
+          <span class="m-date">2026. 04. 22</span>
+          <span class="m-title">반도체 기업에 대한 미국 수출통제(EAR) 조사 대응 및 자율공시 절차를 지원했습니다.</span>
+        </span>
+        <span class="m-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+    <div class="m-pager reveal">
+      <button class="active">1</button>
+      <button>2</button>
+      <button>3</button>
+      <button>4</button>
+    </div>
+  </div>
+</section>
+
+<!-- Recognition -->
+<section class="section recog">
+  <div class="wrap">
+    <div class="recog-card reveal">
+      <span class="recog-eyebrow">Recognition</span>
+      <div class="recog-track">
+        <blockquote class="recog-slide active">
+          <p>23년 연속 최상위(Tier 1) 로펌으로 선정되며, 국내외 주요 평가기관으로부터 독보적인 신뢰를 받고 있습니다.</p>
+          <cite>Chambers Asia-Pacific 2026</cite>
+        </blockquote>
+        <blockquote class="recog-slide">
+          <p>복잡한 크로스보더 분쟁과 규제 대응에서 가장 신뢰할 수 있는 자문사로 꾸준히 평가받고 있습니다.</p>
+          <cite>The Legal 500 Asia Pacific</cite>
+        </blockquote>
+        <blockquote class="recog-slide">
+          <p>공정거래·M&amp;A·국제중재 등 핵심 분야에서 최다 추천 변호사를 보유한 로펌입니다.</p>
+          <cite>IFLR1000 2026</cite>
+        </blockquote>
+        <blockquote class="recog-slide">
+          <p>고객 중심의 원팀(One-Team) 자문으로 3년 연속 ‘올해의 로펌’에 선정되었습니다.</p>
+          <cite>Asian Legal Business (ALB)</cite>
+        </blockquote>
+        <blockquote class="recog-slide">
+          <p>글로벌 스탠더드에 부합하는 자문 역량으로 아시아를 대표하는 로펌으로 인정받고 있습니다.</p>
+          <cite>asialaw Profiles 2026</cite>
+        </blockquote>
+      </div>
+      <div class="recog-dots">
+        <button class="rdot active" data-idx="0" aria-label="평판 1"></button>
+        <button class="rdot" data-idx="1" aria-label="평판 2"></button>
+        <button class="rdot" data-idx="2" aria-label="평판 3"></button>
+        <button class="rdot" data-idx="3" aria-label="평판 4"></button>
+        <button class="rdot" data-idx="4" aria-label="평판 5"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -342,15 +535,6 @@
       <a href="#" class="prac"><span class="num">07</span><h4>디지털 금융</h4><span class="arrow">↗</span></a>
       <a href="#" class="prac"><span class="num">08</span><h4>조세 · 국제투자</h4><span class="arrow">↗</span></a>
     </div>
-  </div>
-</section>
-
-<!-- Recognition quote -->
-<section class="quote-band">
-  <div class="wrap">
-    <span class="eyebrow">Recognition</span>
-    <blockquote>“복잡한 규제와 국경을 넘는 분쟁에서 <b>가장 신뢰할 수 있는 자문사</b>. 3년 연속 국내 최상위 로펌으로 평가받았습니다.”</blockquote>
-    <cite>— Chambers Asia-Pacific, The Legal 500, IFLR1000</cite>
   </div>
 </section>
 
@@ -496,6 +680,74 @@
       });
     });
     start();
+  })();
+
+  // 법무법인 / 특허법인 토글
+  (function(){
+    var btns = document.querySelectorAll('.ft-btn');
+    var kr = document.querySelector('.brand .kr');
+    var en = document.querySelector('.brand .en');
+    var FIRMS = {
+      law:    { kr:'법무법인(유한) 태평양', en:'BAE, KIM & LEE LLC' },
+      patent: { kr:'특허법인 태평양',        en:'BAE, KIM & LEE IP' }
+    };
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){ x.classList.remove('active'); });
+        b.classList.add('active');
+        var f = FIRMS[b.dataset.firm];
+        kr.textContent = f.kr;
+        en.textContent = f.en;
+      });
+    });
+  })();
+
+  // 평판(Recognition) 캐러셀
+  (function(){
+    var slides = document.querySelectorAll('.recog-slide');
+    var dots = document.querySelectorAll('.rdot');
+    if(!slides.length) return;
+    var i = 0, timer;
+    function go(n){
+      slides[i].classList.remove('active'); dots[i].classList.remove('active');
+      i = (n+slides.length)%slides.length;
+      slides[i].classList.add('active'); dots[i].classList.add('active');
+    }
+    function start(){ timer = setInterval(function(){ go(i+1); }, 5000); }
+    dots.forEach(function(d){
+      d.addEventListener('click', function(){ clearInterval(timer); go(parseInt(this.dataset.idx,10)); start(); });
+    });
+    start();
+  })();
+
+  // 스크롤 진입 리빌 애니메이션 (IO + 스크롤 폴백 + 안전 타이머)
+  (function(){
+    var els = [].slice.call(document.querySelectorAll('.reveal, .m-list'));
+    function reveal(e){ e.classList.add('in'); }
+    function check(){
+      var vh = window.innerHeight;
+      els = els.filter(function(e){
+        var r = e.getBoundingClientRect();
+        if(r.top < vh * 0.88 && r.bottom > 0){ reveal(e); return false; }
+        return true;
+      });
+    }
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){ reveal(en.target); io.unobserve(en.target); }
+        });
+      },{threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+      els.forEach(function(e){ io.observe(e); });
+    }
+    var raf;
+    window.addEventListener('scroll', function(){ cancelAnimationFrame(raf); raf = requestAnimationFrame(check); }, {passive:true});
+    window.addEventListener('resize', check);
+    check();
+    // 안전장치: 어떤 이유로든 콘텐츠가 계속 숨어있지 않도록
+    setTimeout(function(){
+      document.querySelectorAll('.reveal, .m-list').forEach(function(e){ e.classList.add('in'); });
+    }, 3000);
   })();
 </script>
 </body>
