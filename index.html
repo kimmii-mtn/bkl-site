@@ -59,9 +59,9 @@
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex;align-items:center;justify-content:space-between;height:80px;}
-  .brand{display:flex;flex-direction:column;line-height:1.15;}
-  .brand .kr{font-size:20px;font-weight:800;letter-spacing:-.01em;color:var(--navy);}
-  .brand .en{font-size:10.5px;letter-spacing:.22em;color:var(--gray);text-transform:uppercase;margin-top:2px;}
+  .brand{display:flex;align-items:center;}
+  .brand img{height:28px;width:auto;display:block;}
+  .brand img.patent{height:22px;}
   nav.main ul{display:flex;gap:38px;list-style:none;align-items:center;}
   nav.main a{
     font-size:15.5px;font-weight:600;color:var(--ink);position:relative;padding:6px 0;
@@ -101,9 +101,11 @@
   }
   .readmore{
     display:inline-flex;align-items:center;gap:9px;color:#fff;font-weight:600;font-size:15px;
-    border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px;
+    border:1px solid rgba(255,255,255,.55);padding:13px 28px;border-radius:6px;
+    transition:background .25s ease,color .25s ease,border-color .25s ease;
   }
   .readmore svg{width:16px;height:16px;transition:transform .25s ease;}
+  .readmore:hover{background:#fff;color:var(--navy);border-color:#fff;}
   .readmore:hover svg{transform:translateX(4px);}
   .hero-dots{position:absolute;bottom:40px;left:0;right:0;z-index:3;}
   .hero-dots .wrap{display:flex;gap:12px;align-items:center;}
@@ -318,10 +320,7 @@
     .hero{height:min(86vh,760px);}
     .slide{align-items:flex-end;}
     .slide .wrap{padding-bottom:72px;}
-    .hero-float{top:22px;bottom:auto;}
-    .hero-float .wrap{justify-content:center;}
-    .seminar-card{width:100%;max-width:260px;}
-    .sc-media{aspect-ratio:16/9;}
+    .hero-float{display:none;}
   }
 </style>
 </head>
@@ -347,8 +346,7 @@
 <header class="site">
   <div class="wrap nav">
     <a href="#" class="brand">
-      <span class="kr">법무법인(유한) 태평양</span>
-      <span class="en">BAE, KIM &amp; LEE LLC</span>
+      <img id="brand-logo" src="assets/logo_bkl_ko_on.svg" alt="법무법인(유한) 태평양" />
     </a>
     <nav class="main">
       <ul>
@@ -687,19 +685,19 @@
   // 법무법인 / 특허법인 토글
   (function(){
     var btns = document.querySelectorAll('.ft-btn');
-    var kr = document.querySelector('.brand .kr');
-    var en = document.querySelector('.brand .en');
+    var logo = document.getElementById('brand-logo');
     var FIRMS = {
-      law:    { kr:'법무법인(유한) 태평양', en:'BAE, KIM & LEE LLC' },
-      patent: { kr:'특허법인 태평양',        en:'BAE, KIM & LEE IP' }
+      law:    { src:'assets/logo_bkl_ko_on.svg',    alt:'법무법인(유한) 태평양', cls:'' },
+      patent: { src:'assets/logo_patent_ko_on.svg', alt:'특허법인 태평양',       cls:'patent' }
     };
     btns.forEach(function(b){
       b.addEventListener('click', function(){
         btns.forEach(function(x){ x.classList.remove('active'); });
         b.classList.add('active');
         var f = FIRMS[b.dataset.firm];
-        kr.textContent = f.kr;
-        en.textContent = f.en;
+        logo.src = f.src;
+        logo.alt = f.alt;
+        logo.className = f.cls;
       });
     });
   })();
