@@ -248,11 +248,27 @@
   .ins-card h4{font-size:19px;font-weight:700;line-height:1.4;color:var(--ink);transition:color .2s;}
   .ins-card:hover h4{color:var(--accent);}
 
-  /* ---------- Global offices strip ---------- */
+  /* ---------- Global offices ---------- */
   .offices{background:var(--bg-soft);}
-  .offices .row{display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:26px;}
-  .offices .row span{font-size:16px;font-weight:600;color:var(--navy);}
-  .offices .row span small{color:var(--gray);font-weight:400;margin-left:6px;}
+  .office-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px;}
+  .office-card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:28px 26px 22px;display:flex;flex-direction:column;
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .office-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(10,26,60,.10);}
+  .office-card h4{font-size:19px;font-weight:800;color:var(--navy);}
+  .office-card h4 small{font-size:12px;font-weight:500;color:var(--gray);margin-left:8px;letter-spacing:.08em;text-transform:uppercase;}
+  .office-card .addr{margin-top:12px;font-size:14px;line-height:1.7;color:var(--ink);flex:1;}
+  .office-card .contact{margin-top:10px;font-size:13.5px;line-height:1.85;color:var(--gray);}
+  .office-card .contact a{color:var(--gray);}
+  .office-card .contact a:hover{color:var(--navy);}
+  .office-link{
+    margin-top:18px;padding-top:16px;border-top:1px solid var(--line);
+    display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--accent);
+  }
+  .office-link svg{width:14px;height:14px;transition:transform .2s ease;}
+  .office-card:hover .office-link svg{transform:translateX(3px);}
 
   /* ---------- CTA ---------- */
   .cta{
@@ -291,6 +307,7 @@
     .seminar-card{width:210px;max-width:100%;}
     .recog-card{padding:64px 40px 56px;}
     .recog-slide p{font-size:26px;}
+    .office-grid{grid-template-columns:repeat(2,1fr);}
   }
   @media(max-width:640px){
     .wrap{padding:0 22px;}
@@ -314,6 +331,7 @@
     .recog-card{padding:52px 24px 44px;border-radius:18px;}
     .recog-slide p{font-size:20px;line-height:1.55;}
     .recog-track{min-height:230px;}
+    .office-grid{grid-template-columns:1fr;}
     .quote-band blockquote{font-size:24px;}
     .section{padding:64px 0;}
     .foot-top{grid-template-columns:1fr;}
@@ -596,15 +614,61 @@
 <!-- Global offices -->
 <section class="section offices">
   <div class="wrap">
-    <span class="eyebrow">Global Network</span>
-    <h3 style="font-size:28px;font-weight:800;color:var(--navy);margin-top:8px;">글로벌 오피스</h3>
-    <div class="row">
-      <span>서울 <small>Seoul</small></span>
-      <span>싱가포르 <small>Singapore</small></span>
-      <span>베이징 <small>Beijing</small></span>
-      <span>홍콩 <small>Hong Kong</small></span>
-      <span>호치민 <small>Ho Chi Minh</small></span>
-      <span>하노이 <small>Hanoi</small></span>
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">Global Network</span>
+        <h3>글로벌 오피스</h3>
+      </div>
+    </div>
+    <div class="office-grid reveal">
+      <div class="office-card">
+        <h4>서울 <small>Seoul</small></h4>
+        <p class="addr">센트로폴리스 B동<br/>서울 종로구 우정국로 26</p>
+        <p class="contact">T. <a href="tel:+82-2-3404-0000">82-2-3404-0000</a><br/>E. <a href="mailto:bkl@bkl.co.kr">bkl@bkl.co.kr</a></p>
+        <a href="#" class="office-link">자세히 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="office-card">
+        <h4>싱가포르 <small>Singapore</small></h4>
+        <p class="addr">Millenia Tower<br/>1 Temasek Ave, 싱가포르 039192</p>
+        <p class="contact">T. <a href="tel:+65-6322-4882">65-6322-4882</a><br/>E. <a href="mailto:singapore@bkl.co.kr">singapore@bkl.co.kr</a></p>
+        <a href="#" class="office-link">자세히 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="office-card">
+        <h4>베이징 <small>Beijing</small></h4>
+        <p class="addr">SK Tower<br/>6 Jia, Jianguomenwai Ave, Chaoyang District</p>
+        <p class="contact">T. <a href="tel:+86-10-6535-0966">86-10-6535-0966</a><br/>E. <a href="mailto:beijing@bkl.co.kr">beijing@bkl.co.kr</a></p>
+        <a href="#" class="office-link">자세히 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="office-card">
+        <h4>홍콩 <small>Hong Kong</small></h4>
+        <p class="addr">Central Plaza<br/>18 Harbour Road, Wan Chai</p>
+        <p class="contact">T. <a href="tel:+852-2103-2500">852-2103-2500</a><br/>E. <a href="mailto:hongkong@bkl.co.kr">hongkong@bkl.co.kr</a></p>
+        <a href="#" class="office-link">자세히 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="office-card">
+        <h4>호치민 <small>Ho Chi Minh</small></h4>
+        <p class="addr">mPlaza Saigon<br/>39 Le Duan Blvd, District 1</p>
+        <p class="contact">T. <a href="tel:+84-28-3910-0888">84-28-3910-0888</a><br/>E. <a href="mailto:hcmc@bkl.co.kr">hcmc@bkl.co.kr</a></p>
+        <a href="#" class="office-link">자세히 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="office-card">
+        <h4>하노이 <small>Hanoi</small></h4>
+        <p class="addr">Lotte Center Hanoi<br/>54 Lieu Giai St, Ba Dinh District</p>
+        <p class="contact">T. <a href="tel:+84-24-3768-7699">84-24-3768-7699</a><br/>E. <a href="mailto:hanoi@bkl.co.kr">hanoi@bkl.co.kr</a></p>
+        <a href="#" class="office-link">자세히 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
